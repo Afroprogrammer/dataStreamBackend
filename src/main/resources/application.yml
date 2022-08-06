@@ -12,6 +12,7 @@ services:
   paystack:
     baseUrl: https://api.paystack.co
     apiKey: sk_test_ae623994037cb18b4406d479af6c2ed461840bb9
+    callbackUrl: ""
 
   datastream:
     baseUrl: https://api.staging.baxibap.com
