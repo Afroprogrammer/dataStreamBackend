@@ -9,5 +9,5 @@ services:
   paystack:
     apiKey: ""
 
-  datastream:
+  biller:
     apiKey: ""

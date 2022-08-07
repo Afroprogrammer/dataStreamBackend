@@ -14,7 +14,7 @@ services:
     baseUrl: https://api.paystack.co
     apiKey: sk_test_ae623994037cb18b4406d479af6c2ed461840bb9
 
-  datastream:
+  biller:
     baseUrl: https://api.staging.baxibap.com
     apiKey: b5zPWjbkDAvj/8fVV/EHvmu20SM9gb9Z98uRXLrA+jY=
 

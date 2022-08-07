@@ -16,10 +16,10 @@ public class WebClientConfig {
     @Value("${services.paystack.apiKey}")
     private String payStackApiKey;
 
-    @Value("${services.datastream.baseUrl}")
+    @Value("${services.biller.baseUrl}")
     private String dataStreamBaseUrl;
 
-    @Value("${services.datastream.apiKey}")
+    @Value("${services.biller.apiKey}")
     private String dataStreamApiKey;
 
 
