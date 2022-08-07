@@ -1,9 +1,9 @@
-package com.example.datastreambackend.services;
+package com.example.datastreambackend.services.impl;
 
 import com.example.datastreambackend.dtos.ElectricityProviderDto;
 import com.example.datastreambackend.mappers.ElectricityProviderMapper;
 import com.example.datastreambackend.repositories.ElectricityProviderRepository;
-import com.example.datastreambackend.services.impl.ElectricityProviderService;
+import com.example.datastreambackend.services.ElectricityProviderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

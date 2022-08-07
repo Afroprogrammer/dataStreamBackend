@@ -1,4 +1,4 @@
-package com.example.datastreambackend.services.impl;
+package com.example.datastreambackend.services;
 
 import com.example.datastreambackend.dtos.ElectricityProviderDto;
 

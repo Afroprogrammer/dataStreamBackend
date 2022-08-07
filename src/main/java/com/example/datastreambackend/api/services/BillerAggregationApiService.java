@@ -5,4 +5,6 @@ import com.example.datastreambackend.api.responses.ElectricityProviderApiRespons
 public interface BillerAggregationApiService {
 
     ElectricityProviderApiResponse fetchElectricityProviders();
+
+    Boolean isMeterNumberAndServiceTypeValid(String meterNumber, String serviceType);
 }

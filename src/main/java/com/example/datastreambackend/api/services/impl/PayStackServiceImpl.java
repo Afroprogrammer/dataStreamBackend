@@ -28,28 +28,14 @@ public class PayStackServiceImpl implements PaymentApiService {
     }
 
     @Override
-    public PayStackCheckoutResponse checkout(String reference, Double amount) {
-
-        var body = Map.of(
-                "reference", reference,
-                "amount", amount * 100,
-                "email", "test@mail.com",
-                "callback_url", callbackUrl,
-                "currency", "GHS",
-                "channels", List.of("bank", "card", "ussd", "mobile_money")
-        );
-
-        return sendRequest(body);
-    }
-
-    @Override
-    public PayStackCheckoutResponse checkout(String reference, Double amount, String email) {
+    public PayStackCheckoutResponse checkout(String reference, Double amount, String metaData, String email) {
         var body = Map.of(
                 "reference", reference,
                 "amount", amount * 100,
                 "email", email,
                 "callback_url", callbackUrl,
                 "currency", "GHS",
+                "metadata", Map.of("bill", metaData),
                 "channels", List.of("bank", "card", "ussd", "mobile_money")
         );
 
