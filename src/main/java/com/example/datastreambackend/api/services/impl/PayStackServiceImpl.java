@@ -57,17 +57,37 @@ public class PayStackServiceImpl implements PaymentApiService {
     }
 
     private PayStackCheckoutResponse sendRequest(Map<String, Object> body) {
-        return webClient.post()
-                .uri("/transaction/initialize")
-                .body(Mono.just(body), Map.class)
-                .retrieve()
-                .onStatus(status -> status.value() == HttpStatus.UNAUTHORIZED.value(),
-                        error -> Mono.error(new PayStackCheckoutException("Unauthorized, invalid key"))
-                )
-                .onStatus(status -> status.value() == HttpStatus.BAD_REQUEST.value(),
-                        error -> Mono.error(new PayStackCheckoutException("Bad request, invalid parameters"))
-                )
-                .bodyToMono(PayStackCheckoutResponse.class)
-                .block();
+        try {
+            var response =  webClient.post()
+                    .uri("/transaction/initialize")
+                    .body(Mono.just(body), Map.class)
+                    .retrieve()
+                    .onStatus(status -> status.value() == HttpStatus.UNAUTHORIZED.value(),
+                            error -> Mono.error(new PayStackCheckoutException("Unauthorized, invalid key"))
+                    )
+                    .onStatus(status -> status.value() == HttpStatus.BAD_REQUEST.value(),
+                            error -> Mono.error(new PayStackCheckoutException("Bad request, invalid parameters"))
+                    )
+                    .bodyToMono(PayStackCheckoutResponse.class)
+                    .block();
+
+            log.info("paystack response: {}", response);
+
+            if (response == null) {
+                throw new PayStackCheckoutException("Paystack response is null");
+            }
+
+            if (!response.isStatus()) {
+                throw new PayStackCheckoutException(response.getMessage());
+            }
+
+            return response;
+
+        }catch (PayStackCheckoutException e) {
+            log.error("Error sending request to paystack: {}", e.getMessage());
+            throw e;
+        }
+
+
     }
 }
