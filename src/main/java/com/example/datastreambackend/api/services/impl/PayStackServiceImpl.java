@@ -35,7 +35,7 @@ public class PayStackServiceImpl implements PaymentApiService {
                 "email", email,
                 "callback_url", callbackUrl,
                 "currency", "GHS",
-                "metadata", Map.of("bill", metaData),
+                "metadata", Map.of("info", metaData),
                 "channels", List.of("bank", "card", "ussd", "mobile_money")
         );
 

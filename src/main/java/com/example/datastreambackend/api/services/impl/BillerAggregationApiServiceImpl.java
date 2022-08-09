@@ -1,11 +1,14 @@
 package com.example.datastreambackend.api.services.impl;
 
+import com.example.datastreambackend.api.requests.ElectricityRequest;
 import com.example.datastreambackend.api.responses.ElectricityProviderApiResponse;
 import com.example.datastreambackend.api.responses.VerifyElectricityProviderApiResponse;
 import com.example.datastreambackend.api.services.BillerAggregationApiService;
+import com.example.datastreambackend.exceptions.ElectricityPurchaseException;
 import com.example.datastreambackend.exceptions.VerifyElectricityProviderException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -53,10 +56,37 @@ public class BillerAggregationApiServiceImpl implements BillerAggregationApiServ
 
             return response != null && response.getStatus().equals("success");
 
-        }catch (VerifyElectricityProviderException e) {
+        } catch (VerifyElectricityProviderException e) {
             throw new VerifyElectricityProviderException(e.getMessage(), e.getCode());
         }
 
 
+    }
+
+    @Override
+    public Map<String, Object> purchaseElectricity(ElectricityRequest electricityRequest) {
+        log.info("sending electricity purchase request: {}", electricityRequest);
+
+        try {
+
+            return webClient.post()
+                    .uri("/services/electricity/request")
+                    .body(Mono.just(electricityRequest), ElectricityRequest.class)
+                    .retrieve()
+                    .onStatus(
+                            status -> status.value() == HttpStatus.BAD_REQUEST.value(),
+                            error -> {
+                                var errorResponse = error.bodyToMono(String.class);
+                                return Mono.error(new ElectricityPurchaseException(String.format("electricity purchase bad request %s", errorResponse)));
+                            }
+                    )
+                    .bodyToMono(new ParameterizedTypeReference<Map<String, Object>>() {
+                    })
+                    .block();
+
+
+        } catch (ElectricityPurchaseException e) {
+            throw new ElectricityPurchaseException(e.getMessage());
+        }
     }
 }

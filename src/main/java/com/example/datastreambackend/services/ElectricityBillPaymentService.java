@@ -6,4 +6,6 @@ import com.example.datastreambackend.requets.ElectricityBillPaymentRequest;
 public interface  ElectricityBillPaymentService {
 
     CheckoutUrlResponse initiateCheckout(ElectricityBillPaymentRequest request);
+
+    void storeElectricityBillPayment(ElectricityBillPaymentRequest request, String token);
 }
