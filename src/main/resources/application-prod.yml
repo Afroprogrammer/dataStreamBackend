@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/datastream
+    username: postgres
+    password: postgres
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+
+services:
+  paystack:
+    baseUrl: https://api.paystack.co
+    apiKey: sk_test_ae623994037cb18b4406d479af6c2ed461840bb9
+
+  biller:
+    baseUrl: https://api.staging.baxibap.com
+    apiKey: b5zPWjbkDAvj/8fVV/EHvmu20SM9gb9Z98uRXLrA+jY=
+
+
+providers:
+  electricity:
+    cron: "* */10 * * * ?"
+    scheduler: 43200000

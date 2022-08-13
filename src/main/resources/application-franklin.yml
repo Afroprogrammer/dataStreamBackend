@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: ""
+    username: ""
+    password: ""
+
+
+services:
+  paystack:
+    apiKey: ""
+
+  biller:
+    apiKey: ""

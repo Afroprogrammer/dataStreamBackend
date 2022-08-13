@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/datastream
+    username: postgres
+    password: postgres
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+services:
+  paystack:
+    baseUrl: https://api.paystack.co
+    apiKey: ""
+    callbackUrl: ""
+
+  biller:
+    baseUrl: https://api.staging.baxibap.com
+    apiKey: ""
+
+
+schedulers:
+  electricity:
+      cron: "* */10 * * * ?"
+      fixedDelay: 43200000
+      initialDelay: 1000
