@@ -25,7 +25,7 @@ public class AirtimeProviderScheduler {
 
   public void fetchAirtimeProviders(){
 
-      AirtimeProviderApiResponse airtimeProviderApiResponse =  airtimeAggregationApiService.fetchAirtimeProviders();
+      AirtimeProviderApiResponse airtimeProviderApiResponse =  airtimeAggregationApiService.fetchAirtimeProviders();  //TODO
 
       if (airtimeProviderApiResponse == null){
           log.error("airtime provider response is null");

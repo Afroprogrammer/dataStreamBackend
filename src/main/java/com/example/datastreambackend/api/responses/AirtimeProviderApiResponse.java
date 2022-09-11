@@ -12,5 +12,5 @@ public class AirtimeProviderApiResponse {
     private String status;
     private String message;
     private Integer code;
-    private List<AirtimeProviderItem > data;
+    private List<AirtimeDataResponse > data;  //Create  object of data  //Todo needs work
 }
