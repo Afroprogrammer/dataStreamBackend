@@ -1,5 +1,6 @@
 package com.example.datastreambackend.api.responses;
 
+import com.example.datastreambackend.dtos.AirtimeProviderProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,5 +13,5 @@ public class AirtimeProviderApiResponse {
     private String status;
     private String message;
     private Integer code;
-    private List<AirtimeDataResponse > data;  //Create  object of data  //Todo needs work
+    private AirtimeProviderProperties data;
 }

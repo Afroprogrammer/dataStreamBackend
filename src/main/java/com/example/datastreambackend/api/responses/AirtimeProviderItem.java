@@ -16,13 +16,10 @@ public class AirtimeProviderItem {
     private String serviceType;
     @JsonProperty("shortname")
     private String shortName;
-
     @JsonProperty("biller_id")
     private Integer billerId;
-
     @JsonProperty("product_id")
     private Integer productId;
-
     @JsonProperty("name")
     private String name;
 }

@@ -3,7 +3,7 @@ package com.example.datastreambackend.services.impl;
 import com.example.datastreambackend.dtos.AirtimeOperatorDto;
 import com.example.datastreambackend.mappers.AirtimeProviderMapper;
 import com.example.datastreambackend.repositories.AirtimeOperatorRepository;
-import com.example.datastreambackend.services.AirtimeProviderService;
+import com.example.datastreambackend.services.AirtimeBillPaymentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class AirtimeProviderServiceImpl implements AirtimeProviderService {
+public class AirtimeProviderServiceImpl implements AirtimeBillPaymentService {
 
     private final AirtimeOperatorRepository airtimeOperatorRepository;
 

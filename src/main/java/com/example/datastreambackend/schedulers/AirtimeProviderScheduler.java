@@ -1,6 +1,7 @@
 package com.example.datastreambackend.schedulers;
 
 import com.example.datastreambackend.api.responses.AirtimeProviderApiResponse;
+import com.example.datastreambackend.api.responses.AirtimeProviderItem;
 import com.example.datastreambackend.api.services.AirtimeAggregationApiService;
 import com.example.datastreambackend.mappers.AirtimeProviderMapper;
 import com.example.datastreambackend.models.AirtimeProvider;
@@ -10,6 +11,7 @@ import jdk.dynalink.linker.LinkerServices;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -23,8 +25,9 @@ public class AirtimeProviderScheduler {
 
   private final AirtimeOperatorRepository airtimeOperatorRepository;
 
+  @Scheduled(fixedDelayString = "${schedulers.electricity.fixedDelay}", initialDelayString = "${schedulers.electricity.initialDelay}")
   public void fetchAirtimeProviders(){
-
+  log.info("fetching airtime providers");
       AirtimeProviderApiResponse airtimeProviderApiResponse =  airtimeAggregationApiService.fetchAirtimeProviders();  //TODO
 
       if (airtimeProviderApiResponse == null){
@@ -34,7 +37,7 @@ public class AirtimeProviderScheduler {
       if (airtimeProviderApiResponse.getCode() == HttpStatus.OK.value() && airtimeProviderApiResponse.getStatus().equalsIgnoreCase("success")){
           log.info("providers: {}", airtimeProviderApiResponse.getData());
 
-          List<AirtimeProvider> providers = airtimeProviderApiResponse.getData()
+          List<AirtimeProvider> providers = airtimeProviderApiResponse.getData().getProviders()
                 .stream()
                 .map(AirtimeProviderMapper::mapToAirtimeProvider)
                 .collect(Collectors.toList());
