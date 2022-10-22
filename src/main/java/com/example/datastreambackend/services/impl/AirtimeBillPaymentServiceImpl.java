@@ -1,10 +1,8 @@
 package com.example.datastreambackend.services.impl;
 
-import com.example.datastreambackend.api.services.AirtimeAggregationApiService;
-import com.example.datastreambackend.api.services.AirtimePaymentApiService;
+import com.example.datastreambackend.api.services.PaymentApiService;
 import com.example.datastreambackend.constants.TransactionStatus;
 import com.example.datastreambackend.constants.TransactionType;
-import com.example.datastreambackend.exceptions.ResourceNotFoundException;
 import com.example.datastreambackend.models.AirtimeBillPayment;
 import com.example.datastreambackend.models.Transaction;
 import com.example.datastreambackend.reponses.CheckoutUrlResponse;
@@ -26,15 +24,14 @@ import javax.transaction.Transactional;
 
 
 public class AirtimeBillPaymentServiceImpl implements AirtimeBillPaymentService {
-    private final AirtimePaymentApiService paymentApiService;
+    private final PaymentApiService paymentApiService;
 
     private final AirtimeBillPaymentRepository airtimeBillPaymentRepository;
 
-    private final AirtimeOperatorRepository airtimeOperatorRepository;
+//    private final AirtimeOperatorRepository airtimeOperatorRepository;
 
     private final TransactionRepository transactionRepository;
 
-    private final AirtimeAggregationApiService airtimeAggregationApiService;
 
     private final Gson gson;
 
@@ -50,8 +47,8 @@ public class AirtimeBillPaymentServiceImpl implements AirtimeBillPaymentService 
 
     @Override
     public CheckoutUrlResponse initiateCheckout(AirtimeBillPaymentRequest request) {
-        var airtimeProvider = airtimeOperatorRepository.findById(request.getOperatorId())
-                .orElseThrow(() -> new ResourceNotFoundException("Airtime Operator does not exist"));
+//        var airtimeProvider = airtimeOperatorRepository.findById(request.getOperatorId())
+//                .orElseThrow(() -> new ResourceNotFoundException("Airtime Operator does not exist")); //Might be needed later
 
         var transactionReference = AppUtils.generateTransactionId(TransactionType.RECHARGE_AIRTIME);
 

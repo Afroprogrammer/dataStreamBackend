@@ -17,6 +17,6 @@ public class AirtimeRequest {
     private String agentId;
     private Double amount;
     private String agentReference;
-    private String prepaid;
+    private String plan;
     
 }

@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5041/dataStream
+    url: jdbc:postgresql://localhost:55000/datastream
     username: postgres
-    password: password
+    password: postgrespw
 
 
 services:
@@ -11,3 +11,4 @@ services:
 
   biller:
     apiKey: "b5zPWjbkDAvj/8fVV/EHvmu20SM9gb9Z98uRXLrA+jY="
+

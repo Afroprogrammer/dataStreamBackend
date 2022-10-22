@@ -1,13 +1,10 @@
 package com.example.datastreambackend.schedulers;
 
 import com.example.datastreambackend.api.responses.AirtimeProviderApiResponse;
-import com.example.datastreambackend.api.responses.AirtimeProviderItem;
-import com.example.datastreambackend.api.services.AirtimeAggregationApiService;
+import com.example.datastreambackend.api.services.BillerAggregationApiService;
 import com.example.datastreambackend.mappers.AirtimeProviderMapper;
 import com.example.datastreambackend.models.AirtimeProvider;
-import com.example.datastreambackend.models.ElectricityProvider;
 import com.example.datastreambackend.repositories.AirtimeOperatorRepository;
-import jdk.dynalink.linker.LinkerServices;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -21,7 +18,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Slf4j
 public class AirtimeProviderScheduler {
-  private final AirtimeAggregationApiService airtimeAggregationApiService;
+  private final BillerAggregationApiService airtimeAggregationApiService;
 
   private final AirtimeOperatorRepository airtimeOperatorRepository;
 

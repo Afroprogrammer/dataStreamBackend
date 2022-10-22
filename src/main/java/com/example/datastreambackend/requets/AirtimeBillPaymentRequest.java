@@ -22,5 +22,8 @@ public class AirtimeBillPaymentRequest {
     @NotNull(message = "amount is required")
     private Double amount;
 
+    @NotNull(message = "plan is required")
+    private String plan;
+
     private Boolean useWalletBalance;
 }
