@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: ""
-    username: ""
-    password: ""
+    url:
+    username: postgres
+    password:
 
 
 services:
@@ -11,3 +11,4 @@ services:
 
   biller:
     apiKey: ""
+

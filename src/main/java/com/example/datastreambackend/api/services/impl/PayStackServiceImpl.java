@@ -42,6 +42,21 @@ public class PayStackServiceImpl implements PaymentApiService {
         return sendRequest(body);
     }
 
+    @Override
+    public PayStackCheckoutResponse checkout(String reference, Double amount, String metaData) {
+        var body = Map.of(
+                "reference", reference,
+                "amount", amount * 100,
+                "callback_url", callbackUrl,
+                "currency", "GHS",
+                "email", "neemacomnetwork@gmail.com",
+                "metadata", Map.of("info", metaData),
+                "channels", List.of("bank", "card", "ussd", "mobile_money")
+        );
+
+        return sendRequest(body);
+    }
+
     private PayStackCheckoutResponse sendRequest(Map<String, Object> body) {
         try {
             var response =  webClient.post()
