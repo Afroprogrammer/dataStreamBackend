@@ -25,7 +25,7 @@ public class AirtimeProviderScheduler {
   @Scheduled(fixedDelayString = "${schedulers.electricity.fixedDelay}", initialDelayString = "${schedulers.electricity.initialDelay}")
   public void fetchAirtimeProviders(){
   log.info("fetching airtime providers");
-      AirtimeProviderApiResponse airtimeProviderApiResponse =  airtimeAggregationApiService.fetchAirtimeProviders();  //TODO
+      AirtimeProviderApiResponse airtimeProviderApiResponse =  airtimeAggregationApiService.fetchAirtimeProviders();
 
       if (airtimeProviderApiResponse == null){
           log.error("airtime provider response is null");
@@ -45,6 +45,7 @@ public class AirtimeProviderScheduler {
                       .findByProductIdAndBillerId(provider.getProductId(),  provider.getBillerId())
                       .ifPresent(existingProvider -> provider.setId(existingProvider.getId()));
               airtimeOperatorRepository.save(provider);
+              log.info("Airtime saved " + provider.getName());
 
           }
       }
