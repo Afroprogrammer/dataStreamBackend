@@ -27,6 +27,7 @@ public class AirtimeProviderScheduler {
   log.info("fetching airtime providers");
       AirtimeProviderApiResponse airtimeProviderApiResponse =  airtimeAggregationApiService.fetchAirtimeProviders();
 
+
       if (airtimeProviderApiResponse == null){
           log.error("airtime provider response is null");
           return;
@@ -45,6 +46,7 @@ public class AirtimeProviderScheduler {
                       .findByProductIdAndBillerId(provider.getProductId(),  provider.getBillerId())
                       .ifPresent(existingProvider -> provider.setId(existingProvider.getId()));
               airtimeOperatorRepository.save(provider);
+
               log.info("Airtime saved " + provider.getName());
 
           }
