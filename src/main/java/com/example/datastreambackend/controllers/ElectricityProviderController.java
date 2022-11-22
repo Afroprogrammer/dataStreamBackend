@@ -4,16 +4,14 @@ import com.example.datastreambackend.api.services.BillerAggregationApiService;
 import com.example.datastreambackend.dtos.ElectricityProviderDto;
 import com.example.datastreambackend.services.ElectricityProviderService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
+@CrossOrigin
 public class ElectricityProviderController {
 
     private final ElectricityProviderService electricityProviderService;
