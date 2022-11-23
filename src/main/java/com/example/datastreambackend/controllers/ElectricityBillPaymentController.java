@@ -11,7 +11,6 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/api/electricity_bill_payments")
 @RequiredArgsConstructor
-@CrossOrigin
 public class ElectricityBillPaymentController {
 
     private final ElectricityBillPaymentService electricityBillPaymentService;

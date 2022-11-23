@@ -11,7 +11,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
-@CrossOrigin
 public class ElectricityProviderController {
 
     private final ElectricityProviderService electricityProviderService;
