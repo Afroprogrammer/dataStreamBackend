@@ -12,7 +12,7 @@ services:
   paystack:
     baseUrl: https://api.paystack.co
     apiKey: ""
-    callbackUrl: ""
+    callbackUrl: "https://cush-payments.vercel.app/verfication"
 
   biller:
     baseUrl: https://api.staging.baxibap.com
