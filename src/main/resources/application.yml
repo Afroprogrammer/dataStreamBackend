@@ -12,7 +12,9 @@ services:
   paystack:
     baseUrl: https://api.paystack.co
     apiKey: ""
-    callbackUrl: "https://cush-payments.vercel.app/verfication"
+#    callbackUrl: "https://cush-payments.vercel.app/verfication"
+    callbackUrl: "http://localhost:4000/verfication"
+
 
   biller:
     baseUrl: https://api.staging.baxibap.com
